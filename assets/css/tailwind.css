@@ -1,0 +1,18 @@
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer tailwind-utilities {
+    @tailwind utilities;
+    @tailwind variants;
+}
+
+/* Tailwind Corrections */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    line-height: normal;
+}
