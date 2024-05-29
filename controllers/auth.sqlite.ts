@@ -1,5 +1,7 @@
 import type { User } from "~/schemas/user";
 
+//#region Login
+
 export type LoginResponse =
     | {
           error: string;
@@ -14,13 +16,10 @@ export type LoginParams = {
 export type LoginHandler = (param: LoginParams) => Promise<LoginResponse>;
 
 export const login: LoginHandler = async ({ password, username }) => {
-    const result = await $fetch("/api/users/login", {
-        method: "POST",
-        body: { password, username },
-    });
-
-    return result;
+    throw new Error(`Not implemented yet`);
 };
+
+//#region Register
 
 export type RegisterResponse =
     | {
@@ -43,14 +42,5 @@ export const register: RegisterHandler = async ({
     password,
     username,
 }) => {
-    const result = await $fetch("/api/users/register", {
-        method: "POST",
-        body: {
-            email,
-            password,
-            username,
-        },
-    });
-
-    return result;
+    throw new Error(`Not implemented yet`);
 };

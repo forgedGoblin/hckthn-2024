@@ -1,13 +1,21 @@
 <script lang="ts" setup>
 import { useRoute } from "../.nuxt/typed-router/__useTypedRoute";
 import { definePageMeta } from "../.nuxt/typed-router/__definePageMeta";
+import { promiseTimeout } from "@vueuse/core";
 
-definePageMeta({
-    middleware: ["logged-in"],
-});
+definePageMeta({});
 
 const route = useRoute();
 const ischilderoute = computed(() => route.fullPath !== "/");
+
+const { state, error, isLoading } = useAsyncStateTimeout(
+    async () => {
+        await promiseTimeout(5000);
+        return true;
+    },
+    false,
+    { timeout: 1000 }
+);
 </script>
 
 <template>
@@ -15,7 +23,25 @@ const ischilderoute = computed(() => route.fullPath !== "/");
         class="bg-stone-900 dmsans"
         center
     >
-        <template v-if="!ischilderoute">
+        <Loader
+            :finished="!isLoading"
+            no-fill
+        >
+            <div
+                class="text-green-500"
+                v-if="error !== 'Timeout'"
+            >
+                Ready
+            </div>
+            <div
+                v-else
+                class="text-red-500"
+            >
+                Timeout
+            </div>
+        </Loader>
+
+        <template v-if="!ischilderoute && false">
             <PrimePanel>
                 <div class="flex flex-col gap-2">
                     <Anchor to="/login">Login</Anchor>

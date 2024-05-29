@@ -1,17 +1,11 @@
-import { sql, type InferInsertModel, type InferSelectModel } from "drizzle-orm";
-import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
 import * as yup from "yup";
 
-export const users = sqliteTable("users", {
-    id: integer("id").primaryKey(),
-    email: text("email"),
-    username: text("username"),
-    password: text("password"),
-    createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
-});
-
-export type User = InferSelectModel<typeof users>;
-export type InsertUser = InferInsertModel<typeof users>;
+// !: Change for actual user schema
+export type User = {
+    username: string;
+    password: string;
+    email: string;
+};
 
 export const login_schema = yup.object({
     username: yup.string().required("Username is required"),
