@@ -37,6 +37,7 @@
         "pinia": "^2.1.7",
         "primeicons": "^7.0.0",
         "primevue": "^3.38.0",
+        "qrcode.vue": "^3.4.1",
         "yup": "^1.4.0"
     }
 }
