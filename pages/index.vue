@@ -10,7 +10,7 @@ const ischilderoute = computed(() => route.fullPath !== "/");
 
 const { state, error, isLoading } = useAsyncStateTimeout(
     async () => {
-        await promiseTimeout(5000);
+        await promiseTimeout(500);
         return true;
     },
     false,

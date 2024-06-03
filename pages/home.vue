@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import * as yup from 'yup'
 import { definePageMeta } from "../.nuxt/typed-router/__definePageMeta";
 import { set } from "@vueuse/core";
 
 definePageMeta({
-    middleware: ["auth"],
+    // middleware: ["auth"],
 });
 
 const router = useRouter();
@@ -16,19 +17,17 @@ const logout = () => {
     set(isloggingout, true);
     router.push("/");
 };
+
+const schema = yup.object({
+    email: yup.string().required('Email is required').email("Invalid Format"),
+    password: yup.string().required("Password is required").min(8, "Minimum length of 8")
+})
 </script>
 
 <template>
     <Screen>
         <Fill center>
-            <PrimePanel header="Home">
-                <PrimeButton
-                    @click="logout"
-                    :loading="isloggingout"
-                    label="Logout"
-                    severity="danger"
-                />
-            </PrimePanel>
+            <DynamicForm :schema="schema" @submit="(v) => console.log(`Success`)" />
         </Fill>
     </Screen>
 </template>

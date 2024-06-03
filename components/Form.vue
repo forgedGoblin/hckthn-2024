@@ -4,7 +4,7 @@ import { Form, Field, useForm } from "vee-validate";
 
 const props = defineProps<{
     schema: yup.ObjectSchema<T>;
-    state: T;
+    state: Partial<T>;
     disabled?: boolean;
 }>();
 
